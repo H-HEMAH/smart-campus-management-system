@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #0B1426;
+    color: #E2E8F0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #0B1426; }
+  ::-webkit-scrollbar-thumb { background: #1E3A5F; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #6366F1; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   COMPONENTS  (only standard Tailwind tokens — no arbitrary
+   values, no hover:/focus: pseudo-variants, no group)
+───────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* Glass card — plain CSS so no @apply restrictions apply */
+  .glass-card {
+    background: rgba(15, 28, 53, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  /* Buttons — base shape only; hover/active kept in JSX via Tailwind classes */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
+           font-display font-semibold text-sm text-white
+           bg-accent transition-all duration-200 shadow-accent;
+  }
+  .btn-primary:hover  { background-color: #4F46E5; transform: scale(1.02); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
+           font-display font-semibold text-sm text-slate-200
+           bg-navy-700 border border-white border-opacity-10
+           transition-all duration-200;
+  }
+  .btn-secondary:hover  { background-color: #1E3A5F; }
+  .btn-secondary:active { transform: scale(0.98); }
+  .btn-secondary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
+           font-display font-semibold text-sm text-danger
+           border border-danger border-opacity-30
+           transition-all duration-200;
+    background-color: rgba(239, 68, 68, 0.15);
+  }
+  .btn-danger:hover  { background-color: rgba(239, 68, 68, 0.25); }
+  .btn-danger:active { transform: scale(0.98); }
+  .btn-danger:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .btn-success {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
+           font-display font-semibold text-sm text-success
+           border border-success border-opacity-30
+           transition-all duration-200;
+    background-color: rgba(16, 185, 129, 0.15);
+  }
+  .btn-success:hover { background-color: rgba(16, 185, 129, 0.25); }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-2 rounded-xl
+           font-display font-medium text-sm text-slate-400
+           transition-all duration-200;
+  }
+  .btn-ghost:hover {
+    color: #e2e8f0;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Form fields */
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-xl
+           bg-navy-800 border border-white border-opacity-10
+           text-slate-100 placeholder-slate-500 font-body text-sm
+           transition-all duration-200;
+    outline: none;
+  }
+  .input-field:focus {
+    border-color: rgba(99, 102, 241, 0.6);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  }
+
+  .label {
+    @apply block text-xs font-display font-semibold text-slate-400
+           uppercase tracking-widest mb-1.5;
+  }
+
+  /* Cards */
+  .stat-card {
+    @apply glass-card rounded-2xl p-5 transition-all duration-300 cursor-default;
+  }
+  .stat-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px -5px rgba(0,0,0,0.5),
+                0 4px 10px -5px rgba(0,0,0,0.4);
+  }
+
+  .page-title {
+    @apply font-display font-bold text-2xl text-white tracking-tight;
+  }
+
+  /* Chips / badges */
+  .chip {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full
+           text-xs font-display font-semibold;
+  }
+
+  /* Section label */
+  .section-label {
+    @apply text-slate-500 uppercase font-display font-semibold;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+
+  /* Table row hover */
+  .table-row-hover {
+    transition: background-color 150ms;
+  }
+  .table-row-hover:hover {
+    background-color: rgba(255, 255, 255, 0.025);
+  }
+
+  /* Sidebar nav links — ALL pseudo-class styles in plain CSS */
+  .nav-link {
+    @apply flex items-center gap-3 px-3.5 py-2.5 rounded-xl
+           font-display font-medium text-sm text-slate-400
+           transition-all duration-200;
+    position: relative;
+  }
+  .nav-link:hover {
+    color: #e2e8f0;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-link-active {
+    color: #6366F1 !important;
+    background-color: rgba(99, 102, 241, 0.15) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+
+  .nav-link-inactive {
+    border: 1px solid transparent;
+  }
+}

@@ -1,0 +1,29 @@
+# =========================
+# BACKEND
+# =========================
+backend/target/
+backend/.idea/
+backend/*.log
+
+# Hide application secrets
+backend/src/main/resources/application.properties
+
+# Maven wrapper cache
+backend/.mvn/
+
+# =========================
+# FRONTEND
+# =========================
+smartcampus-frontend/node_modules/
+smartcampus-frontend/dist/
+
+# Environment files
+smartcampus-frontend/.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
